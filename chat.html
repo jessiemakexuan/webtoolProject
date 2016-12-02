@@ -1,0 +1,120 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>INFO6250</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <!-- <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"> -->
+    <script>
+        
+        var href = window.location.href;
+        var index=href.indexOf("=");
+        var userEmail=href.substr(index+1);
+       
+        
+
+
+        $(document).ready(function(){
+
+            $('#myscroll').scrollTop($('#myscroll')[0].scrollHeight);
+             $("h4").text(userEmail);
+
+
+                $(".nav-tabs a").click(function(){
+                    $(this).tab('show');
+                });
+                 $('.nav-tabs a').on('show.bs.tab', function(){
+                   
+                });
+               
+                
+        });
+     
+            //window.setInterval(autopost(),3000);
+
+        //window.load= setTimeOut(autopost(),3000);
+        //window.load=scrollTop();
+        function refresh(){
+            document.getElementById("myform").submit();
+        }
+
+      </script>
+    <script src="chatshowcontroller.js"></script>   
+</head>
+
+<body onunload="myclose()" ng-app="showapp" ng-controller="showcontroller" data-ng-init="load()">
+    <div class="row" >
+    <!--     =================================show part begin====================================== -->
+        <div class="col-sm-1" ></div>
+        <div class="col-sm-7" >
+                <div id="myscroll" style="border: 2px solid gray; border-radius:6px; padding:18px; margin-top:20px; width:100%; height:450px; overflow-x:auto; overflow-y:scroll;">
+                    <div class='row' ng-repeat="obj in messages track by $index">
+                        <div class='col-sm-3' style='background-color: #fffacd; margin:3px 0; border-radius:6px'>{{obj.username}}</div>
+                        <div class='col-sm-7' >{{obj.newmsg}}</div>
+                        <div class='col-sm-2' style='font-size:10px; background-color: #add8e6; margin:3px 0; border-radius:6px'>{{obj.msgtime}}</div>
+                    </div>
+                </div>
+                <br>
+                <form id="myform">
+                    <fieldset class="row">
+                 
+                        <div class="col-sm-9">
+                            <input placeholder="Type your message and click send" class="form-control" type="text" name="message" ng-model="msg"  required>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="submit" class="btn btn-primary"  ng-click="sendmsg()">Send</button>
+                        </div>
+                        <!-- <div class="col-sm-1">
+                              <button type="button" class="btn btn-primary" ng-click="recall()">Recall</button>
+                        </div> -->
+                    </fieldset>
+                </form>
+        </div>
+
+    <!--     =================================show part end======================================== -->
+        <div class="col-sm-3" >
+            
+
+            <div class="row">
+                <div class="col-sm-8" ></div>
+                <div class="col-sm-4" >
+                    <button class="btn btn-primary" ng-click="logout()">Log out</button>
+                </div>
+            </div>
+            <div class="row">    
+                <div class="col-sm-6" >
+                    <h4 id="getusername">span $('span').text(userEmail)</h4>
+                </div>
+                <div class="col-sm-6" >
+                    <img style="width:80%" src="http://pic.58pic.com/58pic/16/91/60/85a58PICbKP_1024.jpg"/>
+                </div>
+            </div>
+           <div class="row">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">History</a></li>
+                    <li><a data-toggle="tab" href="#menu1" ng-click="online()">Online</a></li>
+                </ul>
+                <div class="tab-content" >
+                    <div id="home" class="tab-pane fade in active" >
+                        <div style="border: 1px solid gray; border-radius:6px; padding:5px; margin-top:5px; width:100%; height:250px; overflow-x:auto; overflow-y:scroll;">
+                            
+                            <p>chat history.</p>
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <div style="border: 1px solid gray; border-radius:6px; padding:5px; margin-top:5px; width:100%; height:250px; overflow-x:auto; overflow-y:scroll;">
+                            <ul ng-repeat="x in onlineuser">
+                                {{x}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </div>
+</body>
+</html>
