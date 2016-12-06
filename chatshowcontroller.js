@@ -26,7 +26,7 @@ angShow.controller('showcontroller', function($scope, $filter, $http) {
                     })
                     .success(function(data,status, headers, config) {
                         console.log("get msg");
-                        data = data.slice(12, -2);
+                        data = data.slice(11, -3);
                         $scope.messages = angular.fromJson('[' + data + ']');
                         
                     })
@@ -47,7 +47,7 @@ angShow.controller('showcontroller', function($scope, $filter, $http) {
         })
         .success(function(data,status, headers, config) {
             console.log("get load");
-            data = data.slice(12, -2);
+            data = data.slice(11, -3);
             $scope.messages = angular.fromJson('[' + data + ']');
             
         })
